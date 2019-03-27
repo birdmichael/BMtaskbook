@@ -1,13 +1,14 @@
+
 <h1 align="center">
   Taskbook
 </h1>
 
 <h4 align="center">
-  📓 Tasks, boards & notes for the command-line habitat
+  📓 任务，板块和笔记都在命令行这个栖息地
 </h4>
 
 <div align="center">
-  <img alt="Boards" width="60%" src="media/header-boards.png"/>
+  <img alt="Boards" width="60%" src="../media/header-boards.png"/>
 </div>
 
 <p align="center">
@@ -16,360 +17,283 @@
   </a>
 </p>
 
-## Description
+## 描述
 
-By utilizing a simple and minimal usage syntax, that requires a flat learning curve, taskbook enables you to effectively manage your tasks and notes across multiple boards from within your terminal. All data are written atomically to the storage in order to prevent corruptions, and are never shared with anyone or anything. Deleted items are automatically archived and can be inspected or restored at any moment.
+本应用通过使用简单且最小化的语法，以及平坦的学习曲线，使您可以在终端内跨多个板块，有效地管理任务和笔记。所有数据都以原子方式写入存储，以防止损坏，并且永远不会与任何第三方共享。已删除的条目会自动存档，并且可以随时被检查或恢复。 
 
-Read this document in: [简体中文](https://github.com/klaussinani/taskbook/blob/master/docs/readme.ZH.md), [Русский](https://github.com/klaussinani/taskbook/blob/master/docs/readme.RU.md), [Français](https://github.com/klaussinani/taskbook/blob/master/docs/readme.FR.md).
+访问[贡献指南](https://github.com/klaussinani/taskbook/blob/master/contributing.md#translating-documentation)了解有关如何将此文档翻译成更多语言的更多信息. 
 
-Visit the [contributing guidelines](https://github.com/klaussinani/taskbook/blob/master/contributing.md#translating-documentation) to learn more on how to translate this document into more languages.
+来[Gitter](https://gitter.im/klaussinani/taskbook)或[推特](https://twitter.com/klaussinani)分享您对条目的看法. 
 
-Come over to [Gitter](https://gitter.im/klaussinani/taskbook) or [Twitter](https://twitter.com/klaussinani) to share your thoughts on the project.
+## 亮点
 
-## Highlights
+-   组织任务和笔记到板块
+-   板块和时间表视图
+-   优先和喜爱的机制
+-   搜索和过滤条目
+-   存档并恢复已删除的条目
+-   轻巧快速
+-   数据以原子方式写入存储
+-   自定义存储位置
+-   进展概览
+-   简单和最小的使用语法
+-   更新通知
+-   可通过`~/.taskbook.json`实现配置化
+-   数据存储在JSON文件中`~/.taskbook/storage`
 
-- Organize tasks & notes to boards
-- Board & timeline views
-- Priority & favorite mechanisms
-- Search & filter items
-- Archive & restore deleted items
-- Lightweight & fast
-- Data written atomically to storage
-- Custom storage location
-- Progress overview
-- Simple & minimal usage syntax
-- Update notifications
-- Configurable through `~/.taskbook.json`
-- Data stored in JSON file at `~/.taskbook/storage`
+查看亮点[taskbook 黑板报](https://raw.githubusercontent.com/klaussinani/taskbook/master/media/highlights.png). 
 
-View highlights in a [taskbook board](https://raw.githubusercontent.com/klaussinani/taskbook/master/media/highlights.png).
+### 目录
 
-## Contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Description](#description)
-- [Highlights](#highlights)
-- [Install](#install)
-- [Usage](#usage)
-- [Views](#views)
-- [Configuration](#configuration)
-- [Flight Manual](#flight-manual)
-- [Development](#development)
-- [Related](#related)
-- [Team](#team)
-- [License](#license)
 
-## Install
+- [描述](#%E6%8F%8F%E8%BF%B0)
+- [亮点](#%E5%BC%BA%E8%B0%83)
+- [安装](#%E5%AE%89%E8%A3%85)
+- [用法](#%E7%94%A8%E6%B3%95)
+- [查看](#%E6%9F%A5%E7%9C%8B)
+- [配置](#%E9%85%8D%E7%BD%AE)
+- [飞行手册](#%E9%A3%9E%E8%A1%8C%E6%89%8B%E5%86%8C)
+- [开发](#%E5%8F%91%E5%B1%95)
+- [相关](#%E6%9C%89%E5%85%B3)
+- [团队](#%E5%9B%A2%E9%98%9F)
+- [授权协议](#%E6%89%A7%E7%85%A7)
 
-### Yarn
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-```bash
-yarn global add taskbook
-```
 
-### NPM
+## 安装
 
-```bash
-npm install --global taskbook
-```
+- Fork 此仓库库并将其克隆到您的计算机
+- 定位到您的本地 Fork: `cd taskbook`
+- 安装项目依赖项: `sudo npm install --global`
 
-### Snapcraft
+用法
 
-```bash
-snap install taskbook
-snap alias taskbook tb # set alias
-```
+    $ bmtb --help
+    
+      Usage
+        $ tb [<options> ...]
+    
+        Options
+            none             显示板块视图
+          --task, -t         创建任务
+          --note, -n         创建笔记
+          --timeline, -i     显示时间线视图
+          --delete, -d       删除条目
+          --check, -c        选中/取消选中任务
+          --star, -s         Star/unstar 条目
+          --list, -l         按属性列出条目
+          --find, -f         搜索条目
+          --edit, -e         编辑条目描述
+          --move, -m         在板块之间移动条目
+          --priority, -p     更新任务的优先级
+          --archive, -a      显示已归档的条目
+          --restore, -r      从存档还原条目
+          --help, -h         显示帮助信息
+          --version, -v      显示已安装的版本
+    
+        Examples
+          $ bmtb
+          $ bmtb --task Make some buttercream
+          $ bmtb --task @coding Improve documentation
+          $ bmtb --task @coding @reviews Review PR #42
+          $ bmtb --note @coding Mergesort worse-case O(nlogn)
+          $ bmtb --check 1 2
+          $ bmtb --delete 4
+          $ bmtb --star 2
+          $ bmtb --priority @3 2
+          $ bmtb --timeline
+          $ bmtb --edit @3 Merge PR #42
+          $ bmtb --move @1 cooking
+          $ bmtb --find documentation
+          $ bmtb --list pending coding
+          $ bmtb --archive
+          $ bmtb --restore 4
 
-**Note:** Due to the snap's strictly confined nature, both the storage & configuration files will be saved under the [`$SNAP_USER_DATA`](https://docs.snapcraft.io/reference/env) environment variable instead of the generic `$HOME` one.
+## 查看
 
-## Usage
+### 板块视图
 
-```
-$ tb --help
-
-  Usage
-    $ tb [<options> ...]
-
-    Options
-        none             Display board view
-      --archive, -a      Display archived items
-      --begin, -b        Start/pause task
-      --check, -c        Check/uncheck task
-      --clear            Delete all checked items
-      --copy, -y         Copy item description
-      --delete, -d       Delete item
-      --edit, -e         Edit item description
-      --find, -f         Search for items
-      --help, -h         Display help message
-      --list, -l         List items by attributes
-      --move, -m         Move item between boards
-      --note, -n         Create note
-      --priority, -p     Update priority of task
-      --restore, -r      Restore items from archive
-      --star, -s         Star/unstar item
-      --task, -t         Create task
-      --timeline, -i     Display timeline view
-      --version, -v      Display installed version
-
-    Examples
-      $ tb
-      $ tb --archive
-      $ tb --begin 2 3
-      $ tb --check 1 2
-      $ tb --clear
-      $ tb --copy 1 2 3
-      $ tb --delete 4
-      $ tb --edit @3 Merge PR #42
-      $ tb --find documentation
-      $ tb --list pending coding
-      $ tb --move @1 cooking
-      $ tb --note @coding Mergesort worse-case O(nlogn)
-      $ tb --priority @3 2
-      $ tb --restore 4
-      $ tb --star 2
-      $ tb --task @coding @reviews Review PR #42
-      $ tb --task @coding Improve documentation
-      $ tb --task Make some buttercream
-      $ tb --timeline
-```
-
-## Views
-
-### Board View
-
-Invoking taskbook without any options will display all saved items grouped into their respective boards.
+在没有任何选项的情况下调用 taskbook，将显示分组到各自板中的所有条目。
 
 <div align="center">
-  <img alt="Boards" width="60%" src="media/header-boards.png"/>
+  <img alt="Boards" width="60%" src="../media/header-boards.png"/>
 </div>
 
-### Timeline View
+### 时间线视图
 
-In order to display all items in a timeline view, based on their creation date, the `--timeline`/`-i` option can be used.
+为了显示时间线视图中的所有条目，根据其创建日期，`--timeline`/`-i`选项可以使用。
 
 <div align="center">
-  <img alt="Timeline View" width="62%" src="media/timeline.png"/>
+  <img alt="Timeline View" width="62%" src="../media/timeline.png"/>
 </div>
 
-## Configuration
+## 配置
 
-To configure taskbook navigate to the `~/.taskbook.json` file and modify any of the options to match your own preference. To reset back to the default values, simply delete the config file from your home directory.
+要配置 taskbook ，可定位到`~/.taskbook.json`并根据您的个人喜好修改任何配置选项。如果要重置回默认值，只需从主目录中删除配置文件即可。
 
-The following illustrates all the available options with their respective default values.
+以下说明了所有可用选项及其各自的默认值：
 
 ```json
 {
-  "taskbookDirectory": "~",
+  "taskbookDirectory": "",
   "displayCompleteTasks": true,
   "displayProgressOverview": true
 }
 ```
 
-### In Detail
+### 配置细节
 
 ##### `taskbookDirectory`
 
-- Type: `String`
-- Default: `~`
+-   类型: `String`
+-   默认: `~`
 
-Filesystem path where the storage will be initialized, i.e: `/home/username/the-cloud` or `~/the-cloud`
+初始化存储完成文件的系统路径，比如：`/home/username/the-cloud`。
 
-If left undefined the home directory `~` will be used and taskbook will be set-up under `~/.taskbook/`.
+如果未配置本选项，将默认设置为`~/.taskbook/`。
 
 ##### `displayCompleteTasks`
 
-- Type: `Boolean`
-- Default: `true`
+-   类型: `Boolean`
+-   默认: `true`
 
-Display tasks that are marked as complete.
+显示标记为完成的任务. 
 
 ##### `displayProgressOverview`
 
-- Type: `Boolean`
-- Default: `true`
+-   类型: `Boolean`
+-   默认: `true`
 
-Display progress overview below the timeline and board views.
+在时间线和任务板视图下方显示进度概述。
 
-## Flight Manual
+## 飞行手册
 
-The following is a minor walkthrough containing a set of examples on how to use taskbook.
-In case you spotted an error or think that an example is not to clear enough and should be further improved, please feel free to open an [issue](https://github.com/klaussinani/taskbook/issues/new/choose) or [pull request](https://github.com/klaussinani/taskbook/compare).
+以下是一个小练习，其中包含一组有关如何使用 taskbook 的示例。如果您发现错误或认为某个示例不够清晰并且应该进一步改进，请随时打开[issue](https://github.com/klaussinani/taskbook/issues/new/choose)或[Pull 请求](https://github.com/klaussinani/taskbook/compare)。
 
-### Create Task
+### 创建任务
 
-To create a new task use the `--task`/`-t` option with your task's description following right after.
+要创建新任务，请使用`--task`/`-t`并在后面加上任务说明。
 
-```
-$ tb -t Improve documentation
-```
+    $ tb -t Improve documentation
 
-### Create Note
+### 创建笔记
 
-To create a new note use the `--note`/`-n` option with your note's body following right after.
+要创建新笔记，请使用`--note`/`-n`并在后面加上笔记正文。
 
-```
-$ tb -n Mergesort worse-case O(nlogn)
-```
+    $ tb -n Mergesort worse-case O(nlogn)
 
-### Create Board
+### 创建板块
 
-Boards are automatically initialized when creating a new task or note. To create one or more boards, include their names, prefixed by the `@` symbol, in the description of the about-to-be created item. As a result the newly created item will belong to all of the given boards. By default, items that do not contain any board names in their description are automatically added to the general purpose; `My Board`.
+如果创建新任务或笔记时，指定的板块不存在，那么会自动新建并初始化板块。
+如果想要将新的任务条目指定给新的板块，那么可以在任务描述前，使用`@`作为前缀，并加上新的板块的名称（可以多个板块一并创建）。 此时，新创建的任务条目将属于所有给定的板块。
+如果任务条目描述中不包含任何板块名称，那么默认情况下，会自动添加到通用的：`My Board`。 
 
-```
-$ tb -t @coding @docs Update contributing guidelines
-```
+    $ tb -t @coding @docs Update contributing guidelines
 
-### Check Task
+### 完成任务
 
-To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the ids of the target tasks. Note that the option will update to its opposite the `complete` status of the given tasks, thus checking a complete task will render it as pending and a pending task as complete. Duplicate ids are automatically filtered out.
+要将任务标记为『完成/待处理』，请使用`--check`/`-c`选项后跟目标任务的 ID。
+请注意，该选项将自动转换给定任务的`complete/pending`（完成/待处理）状态。因此，『完成状态条目』 -> `-c` -> 『待处理状态』；『待处理状态条目』 -> `-c` -> 『完成状态条目』。
+重复的ID会自动过滤掉。
 
-```
-$ tb -c 1 3
-```
+    $ tb -c 1 3
 
-### Begin Task
+### 收藏条目（Star）
 
-To mark a task as started/paused, use the `--begin`/`-b` option followed by the ids of the target tasks. The functionality of this option is the same as the one of the above described `--check` option.
+要将一个或多个条目标记为收藏，请使用`--star`/`-s`选项后加上目标项的 ID。该选项的功能对条目状态转换与`--check`选项功能相同。
 
-```
-$ tb -b 2 3
-```
+    $ tb -s 1 2 3
 
-### Star Item
+### 显示板块
 
-To mark one or more items as favorite, use the `--star`/`-s` option followed by the ids of the target items. The functionality of this option is the same as the one of the above described `--check` option.
+在没有任何选项的情况下调用 taskbook 将显示分组到各自板中的所有已保存条目。
 
-```
-$ tb -s 1 2 3
-```
+    $ tb
 
-### Copy Item Description
+### 显示时间轴
 
-To copy to your system's clipboard the description of one or more items, use the `--copy`/`-y` option followed by the ids of the target items. Note that the option will also include the newline character as a separator to each pair of adjacent copied descriptions, thus resulting in a clear and readable stack of sentences on paste.
+想要根据其创建日期，来显示时间线视图中的所有条目，可以使用`--timeline`/`-i`选项。 
 
-```
-$ tb -y 1 2 3
-```
+    $ tb -i
 
-### Display Boards
+### 设置优先级
 
-Invoking taskbook without any options will display all of saved items grouped into their respective boards.
+要在初始化任务时设置任务的优先级，请包括`p:x`任务描述中的语法。
+其中x可以是值的整数`1`、`2`或`3`。请注意，默认情况下，所有任务都以正常优先级`1`创建。
 
-```
-$ tb
-```
+-   `1`- 正常优先
+-   `2`- 中等优先级
+-   `3`- 高度优先
 
-### Display Timeline
 
-In order to display all items in a timeline view, based on their creation date, the `--timeline`/`-i` option can be used.
+    $ tb -t @coding Fix issue `#42` p:3
 
-```
-$ tb -i
-```
+要在创建特定任务后更新特定任务的优先级，请使用`--priority`/`-p`选项，紧接着是`@id`（任务条目的`id`），最后是优先等级。
+目标ID和优先级的放置顺序 并不重要. 
 
-### Set Priority
+    $ tb -p @1 2
 
-To set a priority level for a task while initializing it, include the `p:x` syntax in the task's description, where x can be an integer of value `1`, `2` or `3`. Note that all tasks by default are created with a normal priority - `1`.
+### 移动条目
 
-- `1` - Normal priority
-- `2` - Medium priority
-- `3` - High priority
+要将条目移动到一个或多个板块，请使用`--move`/`-m`选项，后跟`@id`（任务条目的`id`），最后是目标板块的名称。
+默认板块`My Board`可以通过`myboard`关键词来访问。目标 ID 和任务版块名称的放置顺序并不重要。
 
-```
-$ tb -t @coding Fix issue `#42` p:3
-```
+    $ tb -m @1 myboard reviews
 
-To update the priority level of a specific task after its creation, use the `--priority`/`-p` option along with the id the target task, prefixed by the `@` symbol, and an integer of value `1`, `2` or `3`. Note that the order in which the target id and priority level are placed is not significant.
+### 删除条目
 
-```
-$ tb -p @1 2
-```
+要删除一个或多个条目，请使用`--delete`/`-d`选项后跟目标条目的 ID。
+已删除的条目会自动存档，并且可以随时完成或还原。重复的 ID 会被自动过滤掉。
 
-### Move Item
+    $ tb -d 1 2
 
-To move an item to one or more boards, use the `--move`/`-m` option, followed by the target item id, prefixed by the `@` symbol, and the name of the destination boards. The default `My board` can be accessed through the `myboard` keyword. The order in which the target id and board names are placed is not significant.
+### 显示存档
 
-```
-$ tb -m @1 myboard reviews
-```
+要显示所有已存档条目，请使用`--archive`/`-a`选项。请注意，所有已存档条目都会根据其创建日期顺序显示在时间轴视图。
 
-### Delete Item
+    $ tb -a
 
-To delete one or more items, use the `--delete`/`-d` options followed by the ids of the target items. Note that deleted items are automatically archived, and can be inspected or restored at any moment. Duplicate ids are automatically filtered out.
+### 还原条目
 
-```
-$ tb -d 1 2
-```
+要恢复一个或多个条目，请使用`--restore`/`-r`选项后跟目标条目的 ID。请注意，该选项调用时可以看到所有已存档条目的 ID。重复的ID会自动过滤掉。
 
-### Delete Checked Tasks
+    $ tb -r 1 2
 
-To delete/clear all complete tasks at once across all boards, use the `--clear` option. Note that all deleted tasks are automatically archived, and can be inspected or restored at any moment. In order to discourage any possible accidental usage, the `--clear` option has no available shorter alias.
+### 列出条目
 
-```
-$ tb --clear
-```
+要列出一组条目，其中每个条目符合特定数量的属性，请使用`--list`/`-l`选项后跟所需的属性。板块名称和条目特征可以被视为有效的列表属性。
+例如，列出属于默认值的所有条目`myboard`并且是待定任务，可以使用以下内容：
 
-### Display Archive
+    $ tb -l myboard pending
 
-To display all archived items, use the `--archive`/`-a` option. Note that all archived items are displayed in timeline view, based on their creation date.
+默认支持的列表属性及其各自的别名如下: 
 
-```
-$ tb -a
-```
+-   `myboard` - 属于`My Board`的条目
+-   `task`, `tasks`, `todo` - 作为任务的条目
+-   `note`, `notes` - 作为笔记的条目
+-   `pending`, `unchecked`, `incomplete` - 待处理的任务条目
+-   `done`, `checked`, `complete` - 已完成的任务条目
+-   `star`, `starred` - 已加星标的条目
 
-### Restore Items
+### 搜索条目
 
-To restore one or more items, use the `--restore`/`-r` option followed by the ids of the target items. Note that the ids of all archived items can be seen when invoking the `--archive`/`-a` option. Duplicate ids are automatically filtered out.
+要搜索其中一个条目，请使用`--find`/`-f`选项，后跟您的搜索字词。
 
-```
-$ tb -r 1 2
-```
+    $ tb -f documentation
 
-### List Items
+## 相关
 
-To list a group of items where each item complies with a specific set of attributes, use the `--list`/`-l` option followed by the desired attributes. Board names along with item traits can be considered valid listing attributes. For example to list all items that belong to the default `myboard` and are pending tasks, the following could be used;
+-   [chalk](https://github.com/chalk/chalk)- Terminal string styling done right
+-   [signale](https://github.com/klaussinani/signale)-   Hackable console logger
 
-```
-$ tb -l myboard pending
-```
+## 团队
 
-The by default supported listing attributes, together with their respective aliases, are the following;
+-   Klaus Sinani[ (@klaussinani) ](https://github.com/klaussinani)
 
-- `myboard` - Items that belong to `My board`
-- `task`, `tasks`, `todo` - Items that are tasks.
-- `note`, `notes` - Items that are notes.
-- `pending`, `unchecked`, `incomplete` - Items that are pending tasks.
-- `progress`, `started`, `begun` - Items that are in-progress tasks.
-- `done`, `checked`, `complete` - Items that complete tasks.
-- `star`, `starred` - Items that are starred.
-
-### Search Items
-
-To search for one of more items, use the `--find`/`-f` option, followed by your search terms.
-
-```
-$ tb -f documentation
-```
-
-## Development
-
-For more info on how to contribute to the project, please read the [contributing guidelines](https://github.com/klaussinani/taskbook/blob/master/contributing.md).
-
-- Fork the repository and clone it to your machine
-- Navigate to your local fork: `cd taskbook`
-- Install the project dependencies: `npm install` or `yarn install`
-- Lint the code for errors: `npm test` or `yarn test`
-
-## Related
-
-- [signale](https://github.com/klaussinani/signale) - Hackable console logger
-- [qoa](https://github.com/klaussinani/qoa) - Minimal interactive command-line prompts
-- [hyperocean](https://github.com/klaussinani/hyperocean) - Deep oceanic blue Hyper terminal theme
-
-## Team
-
-- Klaus Sinani [(@klaussinani)](https://github.com/klaussinani)
-- Mario Sinani [(@mario-sinani)](https://github.com/mario-sinani)
-
-## License
+## 授权协议
 
 [MIT](https://github.com/klaussinani/taskbook/blob/master/license.md)

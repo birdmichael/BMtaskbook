@@ -16,7 +16,7 @@ architectures:
 
 apps:
   taskbook:
-    command: tb
+    command: bmtb
     plugs:
       - home
       - network

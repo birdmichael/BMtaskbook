@@ -118,7 +118,7 @@ class Render {
 
   _displayItemByDate(item) {
     const {_isTask, isComplete, inProgress} = item;
-    const boards = item.boards.filter(x => x !== 'My Board');
+    const boards = item.boards.filter(x => x !== 'BM Board');
     const star = this._getStar(item);
 
     const prefix = this._buildPrefix(item);
@@ -135,6 +135,8 @@ class Render {
   }
 
   displayByBoard(data) {
+    log({prefix: '\n ', message: yellow(`BMTaskBook For You.`)});
+
     Object.keys(data).forEach(board => {
       if (this._isBoardComplete(data[board]) && !this._configuration.displayCompleteTasks) {
         return;

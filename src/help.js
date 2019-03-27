@@ -1,48 +1,47 @@
 'use strict';
 
 module.exports = `
+  BMTaskBook:
+
   Usage
-    $ tb [<options> ...]
+    $ bmtb [<options> ...]
 
     Options
-        none             Display board view
-      --archive, -a      Display archived items
-      --begin, -b        Start/pause task
-      --check, -c        Check/uncheck task
-      --clear            Delete all checked items
-      --copy, -y         Copy item description
-      --delete, -d       Delete item
-      --edit, -e         Edit item description
-      --find, -f         Search for items
-      --help, -h         Display help message
-      --list, -l         List items by attributes
-      --move, -m         Move item between boards
-      --note, -n         Create note
-      --priority, -p     Update priority of task
-      --restore, -r      Restore items from archive
-      --star, -s         Star/unstar item
-      --task, -t         Create task
-      --timeline, -i     Display timeline view
-      --version, -v      Display installed version
+        none             显示板块视图
+      --task, -t         创建任务
+      --note, -n         创建笔记
+      --timeline, -i     显示时间线视图
+      --delete, -d       删除条目
+      --check, -c        选中/取消选中任务
+      --star, -s         Star/unstar 条目
+      --list, -l         按属性列出条目
+      --find, -f         搜索条目
+      --edit, -e         编辑条目描述
+      --move, -m         在板块之间移动条目
+      --priority, -p     更新任务的优先级
+      --archive, -a      显示已归档的条目
+      --restore, -r      从存档还原条目
+      --help, -h         显示帮助信息
+      --version, -v      显示已安装的版本
 
     Examples
-      $ tb
-      $ tb --archive
-      $ tb --begin 2 3
-      $ tb --check 1 2
-      $ tb --clear
-      $ tb --copy 1 2 3
-      $ tb --delete 4
-      $ tb --edit @3 Merge PR #42
-      $ tb --find documentation
-      $ tb --list pending coding
-      $ tb --move @1 cooking
-      $ tb --note @coding Mergesort worse-case O(nlogn)
-      $ tb --priority @3 2
-      $ tb --restore 4
-      $ tb --star 2
-      $ tb --task @coding @reviews Review PR #42
-      $ tb --task @coding Improve documentation
-      $ tb --task Make some buttercream
-      $ tb --timeline
+      $ bmtb
+      $ bmtb --archive
+      $ bmtb --begin 2 3
+      $ bmtb --check 1 2
+      $ bmtb --clear
+      $ bmtb --copy 1 2 3
+      $ bmtb --delete 4
+      $ bmtb --edit @3 Merge PR #42
+      $ bmtb --find documentation
+      $ bmtb --list pending coding
+      $ bmtb --move @1 cooking
+      $ bmtb --note @coding Mergesort worse-case O(nlogn)
+      $ bmtb --priority @3 2
+      $ bmtb --restore 4
+      $ bmtb --star 2
+      $ bmtb --task @coding @reviews Review PR #42
+      $ bmtb --task @coding Improve documentation
+      $ bmtb --task Make some buttercream
+      $ bmtb --timeline
 `;

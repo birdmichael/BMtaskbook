@@ -1,17 +1,16 @@
 {
-  "name": "taskbook",
+  "name": "bmtaskbook",
   "productName": "Taskbook",
   "version": "0.3.0",
   "description": "📓 Tasks, boards & notes for the command-line habitat",
-  "repository": "klaussinani/taskbook",
-  "license": "MIT",
-  "author": {
-    "name": "Klaus Sinani",
-    "email": "klaussinani@gmail.com",
-    "url": "https://klaussinani.github.io"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/birdmichael/BMtaskbook.git"
   },
+  "license": "MIT",
+  "author": "Klaus Sinani <klaussinani@gmail.com> (https://klaussinani.github.io)",
   "bin": {
-    "tb": "cli.js"
+    "bmtb": "cli.js"
   },
   "engines": {
     "node": ">=6"
@@ -55,5 +54,13 @@
   },
   "xo": {
     "space": 2
+  },
+  "bugs": {
+    "url": "https://github.com/klaussinani/taskbook/issues"
+  },
+  "homepage": "https://github.com/klaussinani/taskbook#readme",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
   }
 }
