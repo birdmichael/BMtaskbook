@@ -8,7 +8,7 @@
 </h4>
 
 <div align="center">
-  <img alt="Boards" width="60%" src="../media/header-boards.png"/>
+  <img alt="Boards" width="60%" src="media/header-boards.png"/>
 </div>
 
 <p align="center">
@@ -120,7 +120,7 @@
 在没有任何选项的情况下调用 taskbook，将显示分组到各自板中的所有条目。
 
 <div align="center">
-  <img alt="Boards" width="60%" src="../media/header-boards.png"/>
+  <img alt="Boards" width="60%" src="media/header-boards.png"/>
 </div>
 
 ### 时间线视图
@@ -128,7 +128,7 @@
 为了显示时间线视图中的所有条目，根据其创建日期，`--timeline`/`-i`选项可以使用。
 
 <div align="center">
-  <img alt="Timeline View" width="62%" src="../media/timeline.png"/>
+  <img alt="Timeline View" width="62%" src="media/timeline.png"/>
 </div>
 
 ## 配置
